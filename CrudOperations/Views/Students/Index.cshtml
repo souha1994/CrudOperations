@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CrudOperations.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>les etudiants</h1>
+
+<button type="button" class="btn btn-primary">
+    <a style ="color:white;text-decoration:none;"asp-action="Create">Nouveau Etudiant ➕</a>
+</button>
+<br/><hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mobilePhone)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.filiere)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                <img src="img/@item.StudentImage" style="height:35px; width:35px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobilePhone)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.filiere.FiliereName)
+            </td>
+            <td>
+                <button type="button" class="btn btn-success">
+                <a style="text-decoration:none;color:white" asp-action="Edit" asp-route-id="@item.StudentId">Modifier</a> 
+                </button>
+
+                 <button type="button" class="btn btn-danger">
+                <a style="text-decoration:none;color:white" asp-action="Delete"  onclick="return confirm('Vous êtes sûr??')" asp-route-id="@item.StudentId">Supprimer</a>
+                 </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

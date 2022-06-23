@@ -1,0 +1,60 @@
+﻿@model CrudOperations.Models.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ajouter un etudiant</h1>
+
+<h4>les informations de l'étudiants</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentName" class="control-label"></label>
+                <input asp-for="StudentName" class="form-control" />
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentImage" class="control-label"></label>
+                <input type="file" asp-for="StudentImage" class="form-control" />
+                <span asp-validation-for="StudentImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="birthDate" class="control-label"></label>
+                <input asp-for="birthDate" class="form-control" />
+                <span asp-validation-for="birthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="mobilePhone" class="control-label"></label>
+                <input asp-for="mobilePhone" class="form-control" />
+                <span asp-validation-for="mobilePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateInscription" class="control-label"></label>
+                <input asp-for="DateInscription" class="form-control" />
+                <span asp-validation-for="DateInscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="filiere.FiliereName" class="control-label"></label>
+                <select asp-for="FiliereID" class ="form-control" asp-items=@(new SelectList(ViewBag.Filieres, "FiliereId", "FiliereName"))>
+                    <option value ="">choisir une filiere...</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Ajouter 🖊️" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
